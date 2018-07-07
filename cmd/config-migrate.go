@@ -28,11 +28,12 @@ import (
 // migrate config files from the any older version to the latest.
 func migrateConfig() {
 	// Migrate config V1 to V101
-	migrateConfigV1ToV101()
-	// Migrate config V101 to V2
-	migrateConfigV101ToV2()
+	// migrateConfigV1ToV101()
+	// // Migrate config V101 to V2
+	// migrateConfigV101ToV2()
 	// Migrate config V2 to V3
-	migrateConfigV2ToV3()
+	// migrateConfigV2ToV3()
+
 	// Migrate config V3 to V4
 	migrateConfigV3ToV4()
 	// Migrate config V4 to V5

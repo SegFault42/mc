@@ -82,7 +82,7 @@ type hostConfigV3 struct {
 }
 
 type configV3 struct {
-	Version string                  `json:"version"`
+	Version string                  `json:"minio-version"`
 	Aliases map[string]string       `json:"alias"`
 	Hosts   map[string]hostConfigV3 `json:"hosts"`
 }
@@ -104,7 +104,7 @@ type hostConfigV4 struct {
 }
 
 type configV4 struct {
-	Version string                  `json:"version"`
+	Version string                  `json:"minio-version"`
 	Aliases map[string]string       `json:"alias"`
 	Hosts   map[string]hostConfigV4 `json:"hosts"`
 }
@@ -125,7 +125,7 @@ type hostConfigV5 struct {
 }
 
 type configV5 struct {
-	Version string                  `json:"version"`
+	Version string                  `json:"minio-version"`
 	Aliases map[string]string       `json:"alias"`
 	Hosts   map[string]hostConfigV5 `json:"hosts"`
 }
@@ -146,7 +146,7 @@ type hostConfigV6 struct {
 }
 
 type configV6 struct {
-	Version string                  `json:"version"`
+	Version string                  `json:"minio-version"`
 	Aliases map[string]string       `json:"alias"`
 	Hosts   map[string]hostConfigV6 `json:"hosts"`
 }
@@ -171,7 +171,7 @@ type hostConfigV7 struct {
 
 // configV7 config version.
 type configV7 struct {
-	Version string                  `json:"version"`
+	Version string                  `json:"minio-version"`
 	Hosts   map[string]hostConfigV7 `json:"hosts"`
 }
 
@@ -185,50 +185,10 @@ func newConfigV7() *configV7 {
 
 func (c *configV7) loadDefaults() {
 	// Minio server running locally.
-	c.setHost("local", hostConfigV7{
-		URL:       "http://localhost:9000",
-		AccessKey: "",
-		SecretKey: "",
-		API:       "S3v4",
-	})
-
-	// Amazon S3 cloud storage service.
-	c.setHost("s3", hostConfigV7{
-		URL:       "https://s3.amazonaws.com",
-		AccessKey: defaultAccessKey,
-		SecretKey: defaultSecretKey,
-		API:       "S3v4",
-	})
-
-	// Google cloud storage service.
-	c.setHost("gcs", hostConfigV7{
-		URL:       "https://storage.googleapis.com",
-		AccessKey: defaultAccessKey,
-		SecretKey: defaultSecretKey,
-		API:       "S3v2",
-	})
-
-	// Minio anonymous server for demo.
-	c.setHost("play", hostConfigV7{
-		URL:       "https://play.minio.io:9000",
-		AccessKey: "",
-		SecretKey: "",
-		API:       "S3v4",
-	})
-
-	// Minio demo server with public secret and access keys.
-	c.setHost("player", hostConfigV7{
-		URL:       "https://play.minio.io:9002",
-		AccessKey: "Q3AM3UQ867SPQQA43P2F",
-		SecretKey: "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG",
-		API:       "S3v4",
-	})
-
-	// Minio public download service.
-	c.setHost("dl", hostConfigV7{
-		URL:       "https://dl.minio.io:9000",
-		AccessKey: "",
-		SecretKey: "",
+	c.setHost("myminio", hostConfigV7{ // DEBUG replace by scw
+		URL:       "https://192.168.43.9:9000",
+		AccessKey: "GVPGBJPC6WV9VP7PPPBK",
+		SecretKey: "/Rl10FB7MkeCHnbIIjwZUeJ6gIbe8Lv8n7Zjd6FN",
 		API:       "S3v4",
 	})
 }
@@ -250,7 +210,7 @@ type hostConfigV8 struct {
 	API       string `json:"api"`
 }
 type configV8 struct {
-	Version string                  `json:"version"`
+	Version string                  `json:"minio-version"`
 	Hosts   map[string]hostConfigV8 `json:"hosts"`
 }
 
@@ -272,34 +232,10 @@ func (c *configV8) setHost(alias string, cfg hostConfigV8) {
 // load default values for missing entries.
 func (c *configV8) loadDefaults() {
 	// Minio server running locally.
-	c.setHost("local", hostConfigV8{
-		URL:       "http://localhost:9000",
-		AccessKey: "",
-		SecretKey: "",
-		API:       "S3v4",
-	})
-
-	// Amazon S3 cloud storage service.
-	c.setHost("s3", hostConfigV8{
-		URL:       "https://s3.amazonaws.com",
-		AccessKey: defaultAccessKey,
-		SecretKey: defaultSecretKey,
-		API:       "S3v4",
-	})
-
-	// Google cloud storage service.
-	c.setHost("gcs", hostConfigV8{
-		URL:       "https://storage.googleapis.com",
-		AccessKey: defaultAccessKey,
-		SecretKey: defaultSecretKey,
-		API:       "S3v2",
-	})
-
-	// Minio anonymous server for demo.
-	c.setHost("play", hostConfigV8{
-		URL:       "https://play.minio.io:9000",
-		AccessKey: "Q3AM3UQ867SPQQA43P2F",
-		SecretKey: "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG",
+	c.setHost("myminio", hostConfigV8{ // DEBUG replace by scw
+		URL:       "https://192.168.43.9:9000",
+		AccessKey: "GVPGBJPC6WV9VP7PPPBK",
+		SecretKey: "/Rl10FB7MkeCHnbIIjwZUeJ6gIbe8Lv8n7Zjd6FN",
 		API:       "S3v4",
 	})
 }
