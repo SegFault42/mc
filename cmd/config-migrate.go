@@ -34,18 +34,18 @@ func migrateConfig() {
 	// Migrate config V2 to V3
 	// migrateConfigV2ToV3()
 
-	// Migrate config V3 to V4
-	migrateConfigV3ToV4()
-	// Migrate config V4 to V5
-	migrateConfigV4ToV5()
-	// Migrate config V5 to V6
-	migrateConfigV5ToV6()
-	// Migrate config V6 to V7
-	migrateConfigV6ToV7()
-	// Migrate config V7 to V8
-	migrateConfigV7ToV8()
-	// Migrate config V8 to V9
-	migrateConfigV8ToV9()
+	//// Migrate config V3 to V4
+	//migrateConfigV3ToV4()
+	//// Migrate config V4 to V5
+	//migrateConfigV4ToV5()
+	//// Migrate config V5 to V6
+	//migrateConfigV5ToV6()
+	//// Migrate config V6 to V7
+	//migrateConfigV6ToV7()
+	//// Migrate config V7 to V8
+	//migrateConfigV7ToV8()
+	//// Migrate config V8 to V9
+	//migrateConfigV8ToV9()
 }
 
 // Migrate from config version 1.0 to 1.0.1. Populate example entries and save it back.

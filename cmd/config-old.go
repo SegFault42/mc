@@ -185,7 +185,7 @@ func newConfigV7() *configV7 {
 
 func (c *configV7) loadDefaults() {
 	// Minio server running locally.
-	c.setHost("myminio", hostConfigV7{ // DEBUG replace by scw
+	c.setHost("scw", hostConfigV7{ // DEBUG replace by scw
 		URL:       "https://192.168.43.9:9000",
 		AccessKey: "GVPGBJPC6WV9VP7PPPBK",
 		SecretKey: "/Rl10FB7MkeCHnbIIjwZUeJ6gIbe8Lv8n7Zjd6FN",
@@ -232,7 +232,7 @@ func (c *configV8) setHost(alias string, cfg hostConfigV8) {
 // load default values for missing entries.
 func (c *configV8) loadDefaults() {
 	// Minio server running locally.
-	c.setHost("myminio", hostConfigV8{ // DEBUG replace by scw
+	c.setHost("scw", hostConfigV8{ // DEBUG replace by scw
 		URL:       "https://192.168.43.9:9000",
 		AccessKey: "GVPGBJPC6WV9VP7PPPBK",
 		SecretKey: "/Rl10FB7MkeCHnbIIjwZUeJ6gIbe8Lv8n7Zjd6FN",

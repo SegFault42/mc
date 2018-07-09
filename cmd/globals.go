@@ -32,8 +32,8 @@ const (
 const (
 	globalMCConfigVersion = "9"
 
-	globalMCConfigDir        = ".mc/"
-	globalMCConfigWindowsDir = "mc\\"
+	globalMCConfigDir        = ".scw/"
+	globalMCConfigWindowsDir = "scw\\"
 	globalMCConfigFile       = "config.json"
 	globalMCCertsDir         = "certs"
 	globalMCCAsDir           = "CAs"
