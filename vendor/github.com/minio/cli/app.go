@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"reflect"
 	"sort"
 	"time"
 )
@@ -195,6 +196,7 @@ func (a *App) Run(arguments []string) (err error) {
 
 	set.SetOutput(ioutil.Discard)
 	err = set.Parse(arguments[1:])
+	fmt.Println("arguments =", arguments)
 	nerr := normalizeFlags(a.Flags, set)
 	context := NewContext(a, set, nil)
 	if nerr != nil {
@@ -243,8 +245,8 @@ func (a *App) Run(arguments []string) (err error) {
 
 	if a.Before != nil {
 		beforeErr := a.Before(context)
+		fmt.Println(beforeErr)
 		if beforeErr != nil {
-			fmt.Fprintf(a.Writer, "%v\n\n", beforeErr)
 			ShowAppHelp(context)
 			HandleExitCoder(beforeErr)
 			err = beforeErr
@@ -252,7 +254,10 @@ func (a *App) Run(arguments []string) (err error) {
 		}
 	}
 
+	//context.Args = []string{"scw"}
+	fmt.Printf("context.Args = %v\n", context.Args) // DEBUG
 	args := context.Args()
+	fmt.Println("args type =", reflect.TypeOf(args)) // DEBUG
 	if args.Present() {
 		name := args.First()
 		c := a.Command(name)
@@ -491,6 +496,7 @@ func (a Author) String() string {
 // it's an ActionFunc or a func with the legacy signature for Action, the func
 // is run!
 func HandleAction(action interface{}, context *Context) (err error) {
+
 	if a, ok := action.(ActionFunc); ok {
 		return a(context)
 	} else if a, ok := action.(func(*Context) error); ok {

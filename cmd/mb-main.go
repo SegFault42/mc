@@ -18,6 +18,7 @@ package cmd
 
 import (
 	"encoding/json"
+	"fmt"
 
 	"github.com/fatih/color"
 	"github.com/minio/cli"
@@ -115,8 +116,10 @@ func mainMakeBucket(ctx *cli.Context) error {
 	ignoreExisting := ctx.Bool("p")
 
 	var cErr error
+	fmt.Printf("ctx.Args = %v\n", ctx.Args)
 	for _, targetURL := range ctx.Args() {
 		// Instantiate client for URL.
+		fmt.Println("targetURL =", targetURL)
 		clnt, err := newClient(targetURL)
 		if err != nil {
 			errorIf(err.Trace(targetURL), "Invalid target `"+targetURL+"`.")

@@ -17,6 +17,8 @@
 package cmd
 
 import (
+	"fmt"
+	"reflect"
 	"strings"
 
 	"github.com/fatih/color"
@@ -80,7 +82,7 @@ EXAMPLES:
 func checkListSyntax(ctx *cli.Context) {
 	args := ctx.Args()
 	if !ctx.Args().Present() {
-		args = []string{"."}
+		args = []string{"scw"}
 	}
 	for _, arg := range args {
 		if strings.TrimSpace(arg) == "" {
@@ -120,10 +122,13 @@ func mainList(ctx *cli.Context) error {
 	isIncomplete := ctx.Bool("incomplete")
 
 	args := ctx.Args()
+	fmt.Println("type args =", reflect.TypeOf(args)) // DEBUG
 	// mimic operating system tool behavior.
-	if !ctx.Args().Present() {
-		args = []string{"."}
-	}
+
+	//if !ctx.Args().Present() {
+	//args = []string{"scw"}  pick default config
+	//}
+	fmt.Println("args ls-main", args)
 
 	var cErr error
 	for _, targetURL := range args {
