@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
-	"reflect"
 	"sort"
 	"time"
 )
@@ -204,6 +203,9 @@ func (a *App) Run(arguments []string) (err error) {
 		ShowAppHelp(context)
 		return nerr
 	}
+
+	fmt.Println("context =", context.Args())
+	fmt.Println("context.value() =", context.value("profile"))
 	context.shellComplete = shellComplete
 
 	if checkCompletions(context) {
@@ -257,7 +259,7 @@ func (a *App) Run(arguments []string) (err error) {
 	//context.Args = []string{"scw"}
 	fmt.Printf("context.Args = %v\n", context.Args) // DEBUG
 	args := context.Args()
-	fmt.Println("args type =", reflect.TypeOf(args)) // DEBUG
+	fmt.Println("args type =", args) // DEBUG
 	if args.Present() {
 		name := args.First()
 		c := a.Command(name)

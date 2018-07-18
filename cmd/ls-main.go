@@ -125,9 +125,9 @@ func mainList(ctx *cli.Context) error {
 	fmt.Println("type args =", reflect.TypeOf(args)) // DEBUG
 	// mimic operating system tool behavior.
 
-	//if !ctx.Args().Present() {
-	//args = []string{"scw"}  pick default config
-	//}
+	if !ctx.Args().Present() {
+		args = []string{"scw"} // pick default config
+	}
 	fmt.Println("args ls-main", args)
 
 	var cErr error
