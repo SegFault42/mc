@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"reflect"
 	"sort"
 	"time"
 )
@@ -204,8 +205,10 @@ func (a *App) Run(arguments []string) (err error) {
 		return nerr
 	}
 
+	fmt.Println("type = ", reflect.TypeOf(context))
 	fmt.Println("context =", context.Args())
 	fmt.Println("context.value() =", context.value("profile"))
+	fmt.Println("===============")
 	context.shellComplete = shellComplete
 
 	if checkCompletions(context) {

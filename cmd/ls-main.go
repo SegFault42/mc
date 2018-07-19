@@ -125,8 +125,10 @@ func mainList(ctx *cli.Context) error {
 	fmt.Println("type args =", reflect.TypeOf(args)) // DEBUG
 	// mimic operating system tool behavior.
 
+	fmt.Println("profile =", ctx.String("profile"))
+	fmt.Println("context =", ctx.Args())
 	if !ctx.Args().Present() {
-		args = []string{"scw"} // pick default config
+		args = []string{ctx.String("profile")} // pick default config
 	}
 	fmt.Println("args ls-main", args)
 

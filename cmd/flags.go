@@ -56,7 +56,7 @@ var globalFlags = []cli.Flag{
 	},
 	cli.StringFlag{
 		Name:  "profile, p",
-		Value: getDefaultProfile(),
+		Value: "scw",
 		Usage: "Name of profile in config file.",
 	},
 }
