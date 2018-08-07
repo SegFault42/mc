@@ -113,7 +113,12 @@ func mainPipe(ctx *cli.Context) error {
 		fatalIf(err.Trace("stdout"), "Unable to write to one or more targets.")
 	} else {
 		// extract URLs.
-		URLs := ctx.Args()
+		var URLs string
+		if ctx.String("profile") == "" {
+			URLs = "scw/" + ctx.Args()[0]
+		} else {
+			URLs = ctx.String("profile") + "/" + ctx.Args()[0]
+		}
 		sseKeys := os.Getenv("MC_ENCRYPT_KEY")
 		if key := ctx.String("encrypt-key"); key != "" {
 			sseKeys = key
@@ -121,8 +126,8 @@ func mainPipe(ctx *cli.Context) error {
 
 		encKeyDB, err := parseAndValidateEncryptionKeys(sseKeys)
 		fatalIf(err, "Unable to parse encryption keys.")
-		err = pipe(URLs[0], encKeyDB)
-		fatalIf(err.Trace(URLs[0]), "Unable to write to one or more targets.")
+		err = pipe(URLs, encKeyDB)
+		fatalIf(err.Trace(URLs), "Unable to write to one or more targets.")
 	}
 
 	// Done.

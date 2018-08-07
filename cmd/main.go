@@ -122,7 +122,7 @@ func checkConfig() {
 	// Ensures config file is sane.
 	config, err := loadMcConfig()
 	fmt.Println("number of profile", len(config.Hosts)) // DEBUG Check if muti entry in json config
-	fmt.Println("configHosts = ", config.Hosts)         // DEBUG
+	fmt.Println("configHosts = ", config.Hosts["scw"])  // DEBUG
 	// Verify if the path is accesible before validating the config
 	fatalIf(err.Trace(mustGetMcConfigPath()), "Unable to access configuration file.")
 

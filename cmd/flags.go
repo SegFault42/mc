@@ -55,7 +55,7 @@ var globalFlags = []cli.Flag{
 		Usage: "Disable SSL certificate verification.",
 	},
 	cli.StringFlag{
-		Name:  "profile, p",
+		Name:  "profile, P",
 		Value: "scw",
 		Usage: "Name of profile in config file.",
 	},

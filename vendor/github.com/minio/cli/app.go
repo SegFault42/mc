@@ -260,13 +260,14 @@ func (a *App) Run(arguments []string) (err error) {
 	}
 
 	//context.Args = []string{"scw"}
-	fmt.Printf("context.Args = %v\n", context.Args) // DEBUG
+	fmt.Printf("context.Args = %v\n", context.String("profile")) // DEBUG
 	args := context.Args()
 	fmt.Println("args type =", args) // DEBUG
 	if args.Present() {
 		name := args.First()
 		c := a.Command(name)
 		if c != nil {
+			fmt.Println("context =", context.String("profile"))
 			return c.Run(context)
 		}
 	}

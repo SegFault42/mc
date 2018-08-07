@@ -228,6 +228,12 @@ func mainCat(ctx *cli.Context) error {
 
 	// if Args contain `-`, we need to preserve its order specially.
 	args := []string(ctx.Args())
+	if ctx.String("profile") == "scw" {
+		args[0] = "scw/" + args[0]
+	} else {
+		args[0] = ctx.String("profile") + "/" + args[0]
+	}
+	fmt.Println("args ==", args)
 	if ctx.Args().First() == "-" {
 		for i, arg := range os.Args {
 			if arg == "cat" {

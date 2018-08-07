@@ -116,9 +116,14 @@ func mainMakeBucket(ctx *cli.Context) error {
 	ignoreExisting := ctx.Bool("p")
 
 	var cErr error
-	fmt.Printf("ctx.Args = %v\n", ctx.Args)
+	fmt.Printf("ctx.Args = %v\n", ctx.String("profile"))
 	for _, targetURL := range ctx.Args() {
 		// Instantiate client for URL.
+		if ctx.String("profile") == "" {
+			targetURL = "scw/" + targetURL
+		} else {
+			targetURL = ctx.String("profile") + "/" + targetURL
+		}
 		fmt.Println("targetURL =", targetURL)
 		clnt, err := newClient(targetURL)
 		if err != nil {
