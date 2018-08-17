@@ -97,6 +97,12 @@ func checkShareUploadSyntax(ctx *cli.Context) {
 			"Expiry cannot be larger than 7 days.")
 	}
 
+	// Parse profile
+	profile := ctx.String("profile")
+	for elem := range ctx.Args() {
+		ctx.Args()[elem] = profile + "/" + ctx.Args()[elem]
+	}
+
 	for _, targetURL := range ctx.Args() {
 		url := newClientURL(targetURL)
 		if strings.HasSuffix(targetURL, string(url.Separator)) && !isRecursive {
@@ -177,7 +183,6 @@ func doShareUploadURL(objectURL string, isRecursive bool, expiry time.Duration, 
 
 // main for share upload command.
 func mainShareUpload(ctx *cli.Context) error {
-
 	// check input arguments.
 	checkShareUploadSyntax(ctx)
 

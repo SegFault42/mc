@@ -90,6 +90,12 @@ func checkShareDownloadSyntax(ctx *cli.Context) {
 		fatalIf(errDummy().Trace(expiry.String()), "Expiry cannot be larger than 7 days.")
 	}
 
+	// Parse profile
+	profile := ctx.String("profile")
+	for elem := range ctx.Args() {
+		ctx.Args()[elem] = profile + "/" + ctx.Args()[elem]
+	}
+
 	// Validate if object exists only if the `--recursive` flag was NOT specified
 	isRecursive := ctx.Bool("recursive")
 	if !isRecursive {
@@ -193,7 +199,6 @@ func doShareDownloadURL(targetURL string, isRecursive bool, expiry time.Duration
 
 // main for share download.
 func mainShareDownload(ctx *cli.Context) error {
-
 	// check input arguments.
 	checkShareDownloadSyntax(ctx)
 

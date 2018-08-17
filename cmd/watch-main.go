@@ -91,6 +91,9 @@ func checkWatchSyntax(ctx *cli.Context) {
 	if len(ctx.Args()) != 1 {
 		cli.ShowCommandHelpAndExit(ctx, "watch", 1) // last argument is exit code
 	}
+
+	profile := ctx.String("profile")
+	ctx.Args()[0] = profile + "/" + ctx.Args()[0]
 }
 
 // watchMessage container to hold one event notification
