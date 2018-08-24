@@ -69,9 +69,9 @@ func (c *configV9) setHost(alias string, cfg hostConfigV9) {
 func (c *configV9) loadDefaults() {
 	// Minio server running locally.
 	c.setHost("scw", hostConfigV9{
-		URL:       "http://192.168.43.9:9000",
-		AccessKey: "GVPGBJPC6WV9VP7PPPBK",
-		SecretKey: "/Rl10FB7MkeCHnbIIjwZUeJ6gIbe8Lv8n7Zjd6FN",
+		URL:       "http://s3.nl-ams.scalewaydata.com",
+		AccessKey: "",
+		SecretKey: "",
 		API:       "S3v4",
 		Lookup:    "auto",
 	})

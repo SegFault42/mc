@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
-	"reflect"
 	"sort"
 	"time"
 )
@@ -196,7 +195,6 @@ func (a *App) Run(arguments []string) (err error) {
 
 	set.SetOutput(ioutil.Discard)
 	err = set.Parse(arguments[1:])
-	fmt.Println("arguments =", arguments)
 	nerr := normalizeFlags(a.Flags, set)
 	context := NewContext(a, set, nil)
 	if nerr != nil {
@@ -205,10 +203,6 @@ func (a *App) Run(arguments []string) (err error) {
 		return nerr
 	}
 
-	fmt.Println("type = ", reflect.TypeOf(context))
-	fmt.Println("context =", context.Args())
-	fmt.Println("context.value() =", context.value("profile"))
-	fmt.Println("===============")
 	context.shellComplete = shellComplete
 
 	if checkCompletions(context) {
@@ -250,7 +244,6 @@ func (a *App) Run(arguments []string) (err error) {
 
 	if a.Before != nil {
 		beforeErr := a.Before(context)
-		fmt.Println(beforeErr)
 		if beforeErr != nil {
 			ShowAppHelp(context)
 			HandleExitCoder(beforeErr)
@@ -260,14 +253,11 @@ func (a *App) Run(arguments []string) (err error) {
 	}
 
 	//context.Args = []string{"scw"}
-	fmt.Printf("context.Args = %v\n", context.String("profile")) // DEBUG
 	args := context.Args()
-	fmt.Println("args type =", args) // DEBUG
 	if args.Present() {
 		name := args.First()
 		c := a.Command(name)
 		if c != nil {
-			fmt.Println("context =", context.String("profile"))
 			return c.Run(context)
 		}
 	}

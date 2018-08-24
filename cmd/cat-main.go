@@ -233,7 +233,6 @@ func mainCat(ctx *cli.Context) error {
 	} else {
 		args[0] = ctx.String("profile") + "/" + args[0]
 	}
-	fmt.Println("args ==", args)
 	if ctx.Args().First() == "-" {
 		for i, arg := range os.Args {
 			if arg == "cat" {

@@ -43,31 +43,6 @@ type configFile struct {
 	} `json:"hosts"`
 }
 
-//// getDefaultProfile return default profile in config.json file
-//func getDefaultProfile() string {
-//////var configFile configFile
-////var f interface{}
-
-////fileName, _ := getMcConfigPath()
-
-////fileData, err := ioutil.ReadFile(fileName)
-////if err != nil {
-////log.Fatal(err)
-////}
-
-//////err = json.Unmarshal([]byte(fileData), &f)
-////err = json.Unmarshal(fileData, &configFile)
-////if err != nil {
-////log.Fatal(err)
-////}
-
-////// get default profile field
-////defaultProfile := reflect.Indirect(reflect.ValueOf(configFile.Hosts))
-//////fmt.Println("defaultProfile =", f)
-////return defaultProfile.String()
-//return "scw"
-//}
-
 // setMcConfigDir - set a custom minio client config folder.
 func setMcConfigDir(configDir string) {
 	mcCustomConfigDir = configDir

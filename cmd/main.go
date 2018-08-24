@@ -93,7 +93,6 @@ func Main() {
 		}
 		return make(map[string]string)
 	}
-	fmt.Printf("app.Before %v\n", app.Before)
 	app.RunAndExitOnError()
 }
 
@@ -121,8 +120,6 @@ func checkConfig() {
 	loadMcConfig = loadMcConfigFactory()
 	// Ensures config file is sane.
 	config, err := loadMcConfig()
-	fmt.Println("number of profile", len(config.Hosts)) // DEBUG Check if muti entry in json config
-	fmt.Println("configHosts = ", config.Hosts["scw"])  // DEBUG
 	// Verify if the path is accesible before validating the config
 	fatalIf(err.Trace(mustGetMcConfigPath()), "Unable to access configuration file.")
 
@@ -304,14 +301,12 @@ func registerApp() *cli.App {
 	}
 
 	app := cli.NewApp()
-	fmt.Println("app.Name =", app.Name)
 	app.Action = func(ctx *cli.Context) {
 		if strings.HasPrefix(Version, "RELEASE.") {
 			// Check for new updates from dl.minio.io.
 			checkUpdate(ctx)
 		}
 		cli.ShowAppHelp(ctx)
-		fmt.Printf("ctx.Args2 = %v\n", ctx.Args)
 	}
 
 	app.HideVersion = true

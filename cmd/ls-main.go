@@ -17,8 +17,6 @@
 package cmd
 
 import (
-	"fmt"
-	"reflect"
 	"strings"
 
 	"github.com/fatih/color"
@@ -81,8 +79,6 @@ EXAMPLES:
 // checkListSyntax - validate all the passed arguments
 func checkListSyntax(ctx *cli.Context) {
 	args := ctx.Args()
-	fmt.Println("ctx.String() =", ctx.String("profile"))
-	fmt.Println("args =", args)
 	for i := 0; i < len(args); i++ {
 		args[i] = ctx.String("profile") + "/" + args[i]
 	}
@@ -127,15 +123,11 @@ func mainList(ctx *cli.Context) error {
 	isIncomplete := ctx.Bool("incomplete")
 
 	args := ctx.Args()
-	fmt.Println("type args =", reflect.TypeOf(args)) // DEBUG
 	// mimic operating system tool behavior.
 
-	fmt.Println("profile =", ctx.String("profile"))
-	fmt.Println("context =", ctx.Args())
 	if !ctx.Args().Present() {
 		args = []string{ctx.String("profile")} // pick default config
 	}
-	fmt.Println("args ls-main", args)
 
 	var cErr error
 	for _, targetURL := range args {

@@ -97,7 +97,6 @@ type Commands []Command
 // Run invokes the command given the context, parses ctx.Args() to generate command-specific flags
 func (c Command) Run(ctx *Context) (err error) {
 
-	fmt.Println("c.Subcommands =", c.Subcommands)
 	if len(c.Subcommands) > 0 {
 		return c.startApp(ctx)
 	}
@@ -111,7 +110,6 @@ func (c Command) Run(ctx *Context) (err error) {
 	}
 
 	set, err := flagSet(c.Name, c.Flags)
-	fmt.Println("HELLO")
 	if err != nil {
 		return err
 	}
@@ -168,7 +166,6 @@ func (c Command) Run(ctx *Context) (err error) {
 		return nil
 	}
 
-	fmt.Println("\033[32mProfile =\033[0m", context.String("profile"))
 	if err != nil {
 		if c.OnUsageError != nil {
 			err := c.OnUsageError(ctx, err, false)

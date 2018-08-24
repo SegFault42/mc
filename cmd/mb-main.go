@@ -124,7 +124,6 @@ func mainMakeBucket(ctx *cli.Context) error {
 		} else {
 			targetURL = ctx.String("profile") + "/" + targetURL
 		}
-		fmt.Println("targetURL =", targetURL)
 		clnt, err := newClient(targetURL)
 		if err != nil {
 			errorIf(err.Trace(targetURL), "Invalid target `"+targetURL+"`.")
