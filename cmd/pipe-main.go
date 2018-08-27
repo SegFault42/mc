@@ -100,6 +100,8 @@ func checkPipeSyntax(ctx *cli.Context) {
 	if len(ctx.Args()) > 1 {
 		cli.ShowCommandHelpAndExit(ctx, "pipe", 1) // last argument is exit code.
 	}
+	profile := ctx.String("profile")
+	ctx.Args()[0] = profile + "/" + ctx.Args()[0]
 }
 
 // mainPipe is the main entry point for pipe command.
@@ -114,11 +116,8 @@ func mainPipe(ctx *cli.Context) error {
 	} else {
 		// extract URLs.
 		var URLs string
-		if ctx.String("profile") == "" {
-			URLs = "scw/" + ctx.Args()[0]
-		} else {
-			URLs = ctx.String("profile") + "/" + ctx.Args()[0]
-		}
+
+		URLs = ctx.Args()[0]
 		sseKeys := os.Getenv("MC_ENCRYPT_KEY")
 		if key := ctx.String("encrypt-key"); key != "" {
 			sseKeys = key

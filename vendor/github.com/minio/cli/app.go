@@ -279,7 +279,10 @@ func (a *App) Run(arguments []string) (err error) {
 // to cli.App.Run. This will cause the application to exit with the given eror
 // code in the cli.ExitCoder
 func (a *App) RunAndExitOnError() {
-	if err := a.Run(os.Args); err != nil {
+	// remove "s3" from arg list
+	args := append(os.Args[:1], os.Args[2:]...)
+
+	if err := a.Run(args); err != nil {
 		fmt.Fprintln(a.errWriter(), err)
 		OsExiter(1)
 	}
