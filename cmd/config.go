@@ -30,19 +30,6 @@ import (
 // mcCustomConfigDir contains the whole path to config dir. Only access via get/set functions.
 var mcCustomConfigDir string
 
-type configFile struct {
-	MinioVersion string `json:"minio-version"`
-	Hosts        struct {
-		Scw struct {
-			URL       string `json:"url"`
-			AccessKey string `json:"accessKey"`
-			SecretKey string `json:"secretKey"`
-			API       string `json:"api"`
-			Lookup    string `json:"lookup"`
-		} `json:"scw"`
-	} `json:"hosts"`
-}
-
 // setMcConfigDir - set a custom minio client config folder.
 func setMcConfigDir(configDir string) {
 	mcCustomConfigDir = configDir

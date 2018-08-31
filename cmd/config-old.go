@@ -185,7 +185,7 @@ func newConfigV7() *configV7 {
 
 func (c *configV7) loadDefaults() {
 	// Minio server running locally.
-	c.setHost("scw", hostConfigV7{
+	c.setHost("scw", hostConfigV7{ // DEBUG replace by scw
 		URL:       "s3.nl-ams.scalewaydata.com",
 		AccessKey: "",
 		SecretKey: "",
@@ -232,7 +232,7 @@ func (c *configV8) setHost(alias string, cfg hostConfigV8) {
 // load default values for missing entries.
 func (c *configV8) loadDefaults() {
 	// Minio server running locally.
-	c.setHost("scw", hostConfigV8{
+	c.setHost("scw", hostConfigV8{ // DEBUG replace by scw
 		URL:       "s3.nl-ams.scalewaydata.com",
 		AccessKey: "",
 		SecretKey: "",

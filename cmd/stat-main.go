@@ -86,12 +86,6 @@ func checkStatSyntax(ctx *cli.Context) {
 			fatalIf(errInvalidArgument().Trace(args...), "Unable to validate empty argument.")
 		}
 	}
-
-	profile := ctx.String("profile")
-	for idx, _ := range ctx.Args() {
-		ctx.Args()[idx] = profile + "/" + ctx.Args()[idx]
-	}
-
 	// extract URLs.
 	URLs := ctx.Args()
 	isIncomplete := false
@@ -121,7 +115,6 @@ func mainStat(ctx *cli.Context) error {
 	isRecursive := ctx.Bool("recursive")
 
 	args := ctx.Args()
-
 	// mimic operating system tool behavior.
 	if !ctx.Args().Present() {
 		args = []string{"."}

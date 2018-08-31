@@ -96,7 +96,6 @@ type Commands []Command
 
 // Run invokes the command given the context, parses ctx.Args() to generate command-specific flags
 func (c Command) Run(ctx *Context) (err error) {
-
 	if len(c.Subcommands) > 0 {
 		return c.startApp(ctx)
 	}
@@ -217,7 +216,6 @@ func (c Command) Run(ctx *Context) (err error) {
 	if err != nil {
 		HandleExitCoder(err)
 	}
-
 	return err
 }
 

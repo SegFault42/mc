@@ -79,12 +79,9 @@ EXAMPLES:
 // checkListSyntax - validate all the passed arguments
 func checkListSyntax(ctx *cli.Context) {
 	args := ctx.Args()
-
-	profile := ctx.String("profile")
-	for i := 0; i < len(args); i++ {
-		args[i] = profile + "/" + args[i]
+	if !ctx.Args().Present() {
+		args = []string{"."}
 	}
-
 	for _, arg := range args {
 		if strings.TrimSpace(arg) == "" {
 			fatalIf(errInvalidArgument().Trace(args...), "Unable to validate empty argument.")
@@ -124,9 +121,8 @@ func mainList(ctx *cli.Context) error {
 
 	args := ctx.Args()
 	// mimic operating system tool behavior.
-
 	if !ctx.Args().Present() {
-		args = []string{ctx.String("profile")} // pick default config
+		args = []string{"."}
 	}
 
 	var cErr error

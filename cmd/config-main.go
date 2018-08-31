@@ -16,7 +16,11 @@
 
 package cmd
 
-import "github.com/minio/cli"
+import (
+	"os"
+
+	"github.com/minio/cli"
+)
 
 //   Configure minio client
 //
@@ -35,7 +39,7 @@ var (
 
 var configCmd = cli.Command{
 	Name:            "config",
-	Usage:           "Manage mc configuration file.",
+	Usage:           "Manage " + os.Args[1] + " configuration file.",
 	Action:          mainConfig,
 	Before:          setGlobalsFromContext,
 	HideHelpCommand: true,

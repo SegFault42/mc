@@ -131,14 +131,10 @@ func checkCatSyntax(ctx *cli.Context) {
 	if !args.Present() {
 		args = []string{"-"}
 	}
-
-	profile := ctx.String("profile")
-
-	for i, arg := range args {
+	for _, arg := range args {
 		if strings.HasPrefix(arg, "-") && len(arg) > 1 {
 			fatalIf(probe.NewError(errors.New("")), fmt.Sprintf("Unknown flag `%s` passed.", arg))
 		}
-		ctx.Args()[i] = profile + "/" + arg
 	}
 }
 

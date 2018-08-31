@@ -202,7 +202,6 @@ func (a *App) Run(arguments []string) (err error) {
 		ShowAppHelp(context)
 		return nerr
 	}
-
 	context.shellComplete = shellComplete
 
 	if checkCompletions(context) {
@@ -245,6 +244,7 @@ func (a *App) Run(arguments []string) (err error) {
 	if a.Before != nil {
 		beforeErr := a.Before(context)
 		if beforeErr != nil {
+			fmt.Fprintf(a.Writer, "%v\n\n", beforeErr)
 			ShowAppHelp(context)
 			HandleExitCoder(beforeErr)
 			err = beforeErr
@@ -252,7 +252,6 @@ func (a *App) Run(arguments []string) (err error) {
 		}
 	}
 
-	//context.Args = []string{"scw"}
 	args := context.Args()
 	if args.Present() {
 		name := args.First()
@@ -279,6 +278,7 @@ func (a *App) Run(arguments []string) (err error) {
 // to cli.App.Run. This will cause the application to exit with the given eror
 // code in the cli.ExitCoder
 func (a *App) RunAndExitOnError() {
+
 	// remove "s3" from arg list
 	args := append(os.Args[:1], os.Args[2:]...)
 
@@ -495,7 +495,6 @@ func (a Author) String() string {
 // it's an ActionFunc or a func with the legacy signature for Action, the func
 // is run!
 func HandleAction(action interface{}, context *Context) (err error) {
-
 	if a, ok := action.(ActionFunc); ok {
 		return a(context)
 	} else if a, ok := action.(func(*Context) error); ok {

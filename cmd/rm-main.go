@@ -153,12 +153,6 @@ func checkRmSyntax(ctx *cli.Context) {
 	isStdin := ctx.Bool("stdin")
 	isDangerous := ctx.Bool("dangerous")
 	isNamespaceRemoval := false
-
-	profile := ctx.String("profile")
-	for idx, _ := range ctx.Args() {
-		ctx.Args()[idx] = profile + "/" + ctx.Args()[idx]
-	}
-
 	for _, url := range ctx.Args() {
 		// clean path for aliases like s3/.
 		//Note: UNC path using / works properly in go 1.9.2 even though it breaks the UNC specification.

@@ -161,9 +161,6 @@ func checkPolicySyntax(ctx *cli.Context) {
 		cli.ShowCommandHelpAndExit(ctx, "policy", 1)
 	}
 
-	profile := ctx.String("profile")
-	ctx.Args()[len(ctx.Args())-1] = profile + "/" + ctx.Args()[len(ctx.Args())-1]
-
 	firstArg := ctx.Args().Get(0)
 
 	// More syntax checking

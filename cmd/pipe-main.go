@@ -100,8 +100,6 @@ func checkPipeSyntax(ctx *cli.Context) {
 	if len(ctx.Args()) > 1 {
 		cli.ShowCommandHelpAndExit(ctx, "pipe", 1) // last argument is exit code.
 	}
-	profile := ctx.String("profile")
-	ctx.Args()[0] = profile + "/" + ctx.Args()[0]
 }
 
 // mainPipe is the main entry point for pipe command.
@@ -115,9 +113,7 @@ func mainPipe(ctx *cli.Context) error {
 		fatalIf(err.Trace("stdout"), "Unable to write to one or more targets.")
 	} else {
 		// extract URLs.
-		var URLs string
-
-		URLs = ctx.Args()[0]
+		URLs := ctx.Args()
 		sseKeys := os.Getenv("MC_ENCRYPT_KEY")
 		if key := ctx.String("encrypt-key"); key != "" {
 			sseKeys = key
@@ -125,8 +121,8 @@ func mainPipe(ctx *cli.Context) error {
 
 		encKeyDB, err := parseAndValidateEncryptionKeys(sseKeys)
 		fatalIf(err, "Unable to parse encryption keys.")
-		err = pipe(URLs, encKeyDB)
-		fatalIf(err.Trace(URLs), "Unable to write to one or more targets.")
+		err = pipe(URLs[0], encKeyDB)
+		fatalIf(err.Trace(URLs[0]), "Unable to write to one or more targets.")
 	}
 
 	// Done.

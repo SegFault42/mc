@@ -16,7 +16,11 @@
 
 package cmd
 
-import "github.com/minio/cli"
+import (
+	"os"
+
+	"github.com/minio/cli"
+)
 
 var (
 	adminFlags = []cli.Flag{}
@@ -24,7 +28,7 @@ var (
 
 var adminCmd = cli.Command{
 	Name:            "admin",
-	Usage:           "Manage Minio servers",
+	Usage:           "Manage " + os.Args[1] + " servers",
 	Action:          mainAdmin,
 	HideHelpCommand: true,
 	Before:          setGlobalsFromContext,

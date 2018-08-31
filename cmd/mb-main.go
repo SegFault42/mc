@@ -99,11 +99,6 @@ func checkMakeBucketSyntax(ctx *cli.Context) {
 	if !ctx.Args().Present() {
 		cli.ShowCommandHelpAndExit(ctx, "mb", 1) // last argument is exit code
 	}
-
-	profile := ctx.String("profile")
-	for i, arg := range ctx.Args() {
-		ctx.Args()[i] = profile + "/" + arg
-	}
 }
 
 // mainMakeBucket is entry point for mb command.

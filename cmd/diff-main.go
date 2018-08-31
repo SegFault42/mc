@@ -117,10 +117,6 @@ func checkDiffSyntax(ctx *cli.Context) {
 			fatalIf(errInvalidArgument().Trace(ctx.Args()...), "Unable to validate empty argument.")
 		}
 	}
-
-	profile := ctx.String("profile")
-	ctx.Args()[1] = profile + "/" + ctx.Args()[1]
-
 	URLs := ctx.Args()
 	firstURL := URLs[0]
 	secondURL := URLs[1]

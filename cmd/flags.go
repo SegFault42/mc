@@ -54,11 +54,6 @@ var globalFlags = []cli.Flag{
 		Name:  "insecure",
 		Usage: "Disable SSL certificate verification.",
 	},
-	cli.StringFlag{
-		Name:  "profile, P",
-		Value: "scw",
-		Usage: "Name of profile in config file.",
-	},
 }
 
 // registerCmd registers a cli command

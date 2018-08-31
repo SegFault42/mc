@@ -28,10 +28,6 @@ func checkCopySyntax(ctx *cli.Context) {
 		cli.ShowCommandHelpAndExit(ctx, "cp", 1) // last argument is exit code.
 	}
 
-	// change profile
-	profile := ctx.String("profile")
-	ctx.Args()[len(ctx.Args())-1] = profile + "/" + ctx.Args().Last()
-
 	// extract URLs.
 	URLs := ctx.Args()
 	if len(URLs) < 2 {
