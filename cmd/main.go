@@ -280,14 +280,17 @@ func registerApp() *cli.App {
 	registerCmd(statCmd)   // Stat contents of a bucket/object
 	registerCmd(diffCmd)   // Computer differences between two files or folders.
 	registerCmd(rmCmd)     // Remove a file or bucket
-	registerCmd(eventsCmd) // Add events cmd
+	// events command not implemented yet
+	//registerCmd(eventsCmd) // Add events cmd
 	// watch command not implemented yet
 	//registerCmd(watchCmd)   // Add watch cmd
-	registerCmd(policyCmd)  // Set policy permissions.
-	registerCmd(adminCmd)   // Manage Minio servers
+	// policy command not implemented yet
+	//registerCmd(policyCmd) // Set policy permissions.
+	// delete
+	//registerCmd(adminCmd)   // Manage Minio servers
 	registerCmd(sessionCmd) // Manage sessions for copy and mirror.
 	registerCmd(configCmd)  // Configure minio client.
-	registerCmd(updateCmd)  // Check for new software updates.
+	//registerCmd(updateCmd)  // Check for new software updates.
 	registerCmd(versionCmd) // Print version.
 
 	cli.HelpFlag = cli.BoolFlag{
